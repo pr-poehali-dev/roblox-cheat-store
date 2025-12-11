@@ -17,6 +17,7 @@ export default function Index() {
   const [subscriptionPeriod, setSubscriptionPeriod] = useState(2);
   const [guideOpen, setGuideOpen] = useState(false);
   const [selectedGuide, setSelectedGuide] = useState(0);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const periods = [
     { days: 7, label: '7 дней', price: 150, discount: 0, oldPrice: 0 },
@@ -311,10 +312,67 @@ ESP (Extra Sensory Perception) - это функция, которая пока�
               <Icon name="User" size={16} className="mr-2" />
               Войти
             </Button>
-            <Button size="icon" variant="ghost" className="md:hidden">
-              <Icon name="Menu" size={24} />
+            <Button 
+              size="icon" 
+              variant="ghost" 
+              className="md:hidden"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              <Icon name={mobileMenuOpen ? "X" : "Menu"} size={24} />
             </Button>
           </div>
+          
+          {mobileMenuOpen && (
+            <div className="md:hidden border-b bg-background/95 backdrop-blur animate-fade-in">
+              <nav className="container flex flex-col py-4 space-y-3">
+                <a 
+                  href="#features" 
+                  className="text-sm font-medium hover:text-primary transition-colors py-2"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Функции
+                </a>
+                <a 
+                  href="#reviews" 
+                  className="text-sm font-medium hover:text-primary transition-colors py-2"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Отзывы
+                </a>
+                <a 
+                  href="#pricing" 
+                  className="text-sm font-medium hover:text-primary transition-colors py-2"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Цены
+                </a>
+                <a 
+                  href="#guides" 
+                  className="text-sm font-medium hover:text-primary transition-colors py-2"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Гайды
+                </a>
+                <a 
+                  href="#support" 
+                  className="text-sm font-medium hover:text-primary transition-colors py-2"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Поддержка
+                </a>
+                <Button 
+                  className="w-full mt-2" 
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    setLoginOpen(true);
+                  }}
+                >
+                  <Icon name="User" size={16} className="mr-2" />
+                  Войти
+                </Button>
+              </nav>
+            </div>
+          )}
         </header>
 
         <section className="py-20 px-4">
