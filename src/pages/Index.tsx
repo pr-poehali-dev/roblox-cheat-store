@@ -757,8 +757,8 @@ export default function Index() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="purchase-email">Email для отправки доступа</Label>
-              <Input id="purchase-email" type="email" placeholder="твой@email.ru" />
+              <Label htmlFor="purchase-nickname">Ник для автоматической выдачи</Label>
+              <Input id="purchase-nickname" type="text" placeholder="твой_ник" />
             </div>
 
             <Button className="w-full bg-gradient-to-r from-primary to-secondary text-lg py-6">
@@ -767,7 +767,7 @@ export default function Index() {
             </Button>
 
             <p className="text-xs text-center text-muted-foreground">
-              После оплаты инструкция придёт на email
+              После оплаты доступ выдается автоматически на указанный ник
             </p>
           </div>
         </DialogContent>
