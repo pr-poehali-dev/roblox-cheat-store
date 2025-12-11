@@ -101,6 +101,27 @@ export default function Index() {
     { title: 'Новый модуль', date: '1 дек 2024', text: 'Выпущен модуль "Телепорт" для премиум пользователей' }
   ];
 
+  const supportTeam = [
+    { 
+      name: 'Shizu', 
+      telegram: '@shizu_support',
+      avatar: 'https://cdn.poehali.dev/projects/6103f50e-ced6-4439-a4e1-c6dd915768e0/files/77bcda6c-df37-49e4-9eba-a84f51e1ce67.jpg',
+      role: 'Старший специалист'
+    },
+    { 
+      name: 'Belka', 
+      telegram: '@belka_support',
+      avatar: 'https://cdn.poehali.dev/projects/6103f50e-ced6-4439-a4e1-c6dd915768e0/files/d3f946e5-dead-47c9-81a3-d5b86de23888.jpg',
+      role: 'Техподдержка'
+    },
+    { 
+      name: 'KripKripo4ek', 
+      telegram: '@kripkripo4ek',
+      avatar: 'https://cdn.poehali.dev/projects/6103f50e-ced6-4439-a4e1-c6dd915768e0/files/207f5561-9219-4a50-8aa6-8d7cb930dced.jpg',
+      role: 'Техподдержка'
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-purple-50 to-blue-50 relative overflow-hidden">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -493,48 +514,32 @@ export default function Index() {
           <div className="container max-w-4xl">
             <div className="text-center mb-12 animate-fade-in">
               <Badge className="mb-4 bg-accent text-white">Поддержка</Badge>
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">Мы всегда на связи</h2>
+              <h2 className="text-4xl md:text-5xl font-bold mb-4">Команда поддержки</h2>
               <p className="text-xl text-muted-foreground">
-                Свяжись с нами любым удобным способом
+                Наши специалисты всегда готовы помочь в Telegram
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <Card className="animate-fade-in hover:shadow-xl transition-all hover:-translate-y-1 bg-white/80 backdrop-blur-sm">
-                <CardHeader className="text-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center mx-auto mb-4">
-                    <Icon name="MessageCircle" size={32} className="text-white" />
-                  </div>
-                  <CardTitle>Онлайн-чат</CardTitle>
-                  <CardDescription>Ответим за 5 минут</CardDescription>
-                </CardHeader>
-                <CardFooter>
-                  <Button className="w-full">Начать чат</Button>
-                </CardFooter>
-              </Card>
-              <Card className="animate-fade-in hover:shadow-xl transition-all hover:-translate-y-1 bg-white/80 backdrop-blur-sm" style={{ animationDelay: '0.1s' }}>
-                <CardHeader className="text-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-secondary to-accent rounded-2xl flex items-center justify-center mx-auto mb-4">
-                    <Icon name="Mail" size={32} className="text-white" />
-                  </div>
-                  <CardTitle>Email</CardTitle>
-                  <CardDescription>support@robloxpro.ru</CardDescription>
-                </CardHeader>
-                <CardFooter>
-                  <Button variant="outline" className="w-full">Написать письмо</Button>
-                </CardFooter>
-              </Card>
-              <Card className="animate-fade-in hover:shadow-xl transition-all hover:-translate-y-1 bg-white/80 backdrop-blur-sm" style={{ animationDelay: '0.2s' }}>
-                <CardHeader className="text-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-accent to-primary rounded-2xl flex items-center justify-center mx-auto mb-4">
-                    <Icon name="Send" size={32} className="text-white" />
-                  </div>
-                  <CardTitle>Telegram</CardTitle>
-                  <CardDescription>Быстрая поддержка 24/7</CardDescription>
-                </CardHeader>
-                <CardFooter>
-                  <Button variant="outline" className="w-full">Открыть Telegram</Button>
-                </CardFooter>
-              </Card>
+              {supportTeam.map((member, index) => (
+                <Card key={index} className="animate-fade-in hover:shadow-xl transition-all hover:-translate-y-1 bg-white/80 backdrop-blur-sm" style={{ animationDelay: `${index * 0.1}s` }}>
+                  <CardHeader className="text-center">
+                    <div className="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden border-4 border-gradient-to-br from-primary to-secondary">
+                      <img src={member.avatar} alt={member.name} className="w-full h-full object-cover" />
+                    </div>
+                    <CardTitle className="text-xl">{member.name}</CardTitle>
+                    <CardDescription className="text-sm">{member.role}</CardDescription>
+                  </CardHeader>
+                  <CardFooter>
+                    <Button 
+                      className="w-full bg-gradient-to-r from-primary to-secondary hover:opacity-90"
+                      onClick={() => window.open(`https://t.me/${member.telegram.replace('@', '')}`, '_blank')}
+                    >
+                      <Icon name="Send" size={16} className="mr-2" />
+                      {member.telegram}
+                    </Button>
+                  </CardFooter>
+                </Card>
+              ))}
             </div>
           </div>
         </section>
@@ -557,13 +562,31 @@ export default function Index() {
                 <a href="#" className="hover:text-white/80 transition-colors">Контакты</a>
               </div>
               <div className="flex gap-4">
-                <Button size="icon" variant="secondary" className="rounded-full">
-                  <Icon name="Youtube" size={20} />
+                <Button 
+                  size="icon" 
+                  variant="secondary" 
+                  className="rounded-full"
+                  onClick={() => window.open('https://vk.com/video-229092943_456239125', '_blank')}
+                  title="VK Видео"
+                >
+                  <Icon name="Video" size={20} />
                 </Button>
-                <Button size="icon" variant="secondary" className="rounded-full">
+                <Button 
+                  size="icon" 
+                  variant="secondary" 
+                  className="rounded-full"
+                  onClick={() => window.open('https://t.me/your_channel', '_blank')}
+                  title="Telegram канал"
+                >
                   <Icon name="Send" size={20} />
                 </Button>
-                <Button size="icon" variant="secondary" className="rounded-full">
+                <Button 
+                  size="icon" 
+                  variant="secondary" 
+                  className="rounded-full"
+                  onClick={() => window.open('https://t.me/your_chat', '_blank')}
+                  title="Telegram чат"
+                >
                   <Icon name="MessageCircle" size={20} />
                 </Button>
               </div>
