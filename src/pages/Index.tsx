@@ -43,7 +43,12 @@ export default function Index() {
       items: [
         { name: 'AimBot', description: 'Автоматическое прицеливание на врагов' },
         { name: 'TriggerBot', description: 'Автоматическая стрельба при наведении' },
-        { name: 'SilentAim', description: 'Невидимое прицеливание для стримов' }
+        { name: 'SilentAim', description: 'Невидимое прицеливание для стримов' },
+        { name: 'Predict', description: 'Предсказание движения цели' },
+        { name: 'Lock Parts', description: 'Выбор части тела для прицеливания' },
+        { name: 'Smooth', description: 'Плавность наведения прицела' },
+        { name: 'Fov Visible', description: 'Видимость зоны прицеливания' },
+        { name: 'Fov Color', description: 'Настройка цвета зоны прицеливания' }
       ]
     },
     {
@@ -112,7 +117,7 @@ export default function Index() {
                 <Icon name="Gamepad2" size={24} className="text-white" />
               </div>
               <span className="text-2xl font-bold bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
-                RobloxPro
+                Roblox-Cheat
               </span>
             </div>
             <nav className="hidden md:flex gap-6">
@@ -298,7 +303,7 @@ export default function Index() {
                     <Icon name="Zap" size={32} className="text-white" />
                   </div>
                   <div>
-                    <CardTitle className="text-3xl">RobloxPro Ultimate</CardTitle>
+                    <CardTitle className="text-3xl">Roblox-Cheat Ultimate</CardTitle>
                     <CardDescription className="text-base">Все функции в одном пакете</CardDescription>
                   </div>
                 </div>
@@ -388,13 +393,14 @@ export default function Index() {
             </div>
             
             <Card className="animate-fade-in bg-white/80 backdrop-blur-sm overflow-hidden">
-              <div className="aspect-video bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 flex items-center justify-center cursor-pointer group" onClick={() => setDemoOpen(true)}>
-                <div className="text-center space-y-4">
-                  <div className="w-20 h-20 bg-white/90 rounded-full flex items-center justify-center mx-auto group-hover:scale-110 transition-transform">
-                    <Icon name="Play" size={40} className="text-primary ml-1" />
-                  </div>
-                  <div className="text-xl font-semibold">Нажми чтобы посмотреть демо</div>
-                </div>
+              <div className="aspect-video relative">
+                <iframe 
+                  src="https://vkvideo.ru/video_ext.php?oid=-229092943&id=456239125&hash=020f569c96e328dd" 
+                  className="w-full h-full"
+                  frameBorder="0" 
+                  allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+                  allowFullScreen
+                />
               </div>
             </Card>
           </div>
@@ -532,7 +538,7 @@ export default function Index() {
                   <Icon name="Gamepad2" size={28} className="text-white" />
                 </div>
                 <div>
-                  <div className="text-2xl font-bold">RobloxPro</div>
+                  <div className="text-2xl font-bold">Roblox-Cheat</div>
                   <div className="text-sm text-white/80">Стань лучшим игроком</div>
                 </div>
               </div>
@@ -554,7 +560,7 @@ export default function Index() {
               </div>
             </div>
             <div className="text-center mt-8 pt-8 border-t border-white/20 text-sm text-white/70">
-              © 2024 RobloxPro. Все права защищены.
+              © 2024 Roblox-Cheat. Все права защищены.
             </div>
           </div>
         </footer>
@@ -593,7 +599,7 @@ export default function Index() {
           <DialogHeader>
             <DialogTitle>Демонстрация возможностей</DialogTitle>
             <DialogDescription>
-              Смотри как работает RobloxPro на практике
+              Смотри как работает Roblox-Cheat на практике
             </DialogDescription>
           </DialogHeader>
           <div className="aspect-video bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 rounded-lg flex items-center justify-center">
