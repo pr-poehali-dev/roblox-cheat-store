@@ -34,42 +34,44 @@ export default function Index() {
     return Math.round(monthlyPrice - discount);
   };
 
-  const products = [
+  const features = [
     {
-      id: 1,
-      name: 'ESP Мастер',
-      description: 'Видь всех игроков через стены и предметы',
-      features: ['Видимость через стены', 'Показ здоровья', 'Показ предметов', 'Настройка цветов'],
-      rating: 4.8,
-      reviews: 156,
-      badge: 'Популярно'
+      category: 'Прицеливание',
+      icon: 'Target',
+      color: 'from-primary to-secondary',
+      items: [
+        { name: 'AimBot', description: 'Автоматическое прицеливание на врагов' },
+        { name: 'TriggerBot', description: 'Автоматическая стрельба при наведении' },
+        { name: 'SilentAim', description: 'Невидимое прицеливание для стримов' }
+      ]
     },
     {
-      id: 2,
-      name: 'Аимбот Про',
-      description: 'Автоматическое прицеливание для точных попаданий',
-      features: ['Умное прицеливание', 'Настройка скорости', 'FOV контроль', 'Сглаживание'],
-      rating: 4.9,
-      reviews: 243,
-      badge: 'Топ'
+      category: 'Визуализация',
+      icon: 'Eye',
+      color: 'from-secondary to-accent',
+      items: [
+        { name: 'ESP', description: 'Видимость игроков через стены' },
+        { name: 'Distance', description: 'Отображение дистанции до игроков' },
+        { name: 'NickName', description: 'Показ имён игроков' },
+        { name: 'Health', description: 'Индикатор здоровья врагов' },
+        { name: 'Skeleton', description: 'Скелетон игроков' },
+        { name: 'Tracers', description: 'Линии к игрокам' },
+        { name: 'StreamProof', description: 'Защита от обнаружения на стриме' }
+      ]
     },
     {
-      id: 3,
-      name: 'Спид Хак',
-      description: 'Увеличь скорость передвижения и прыжков',
-      features: ['Ускорение бега', 'Высокие прыжки', 'Быстрая плавка', 'Защита от бана'],
-      rating: 4.6,
-      reviews: 98,
-      badge: 'Новинка'
-    },
-    {
-      id: 4,
-      name: 'Полный Пакет',
-      description: 'Все функции в одном наборе - максимальная мощь',
-      features: ['Все ESP функции', 'Полный аимбот', 'Спид хак', 'VIP поддержка'],
-      rating: 5.0,
-      reviews: 412,
-      badge: 'Лучший выбор'
+      category: 'Передвижение',
+      icon: 'Zap',
+      color: 'from-accent to-primary',
+      items: [
+        { name: 'SpectatePlayer', description: 'Наблюдение за игроками' },
+        { name: 'Teleport to player', description: 'Телепорт к любому игроку' },
+        { name: 'Teleport to coordinate', description: 'Телепорт по координатам' },
+        { name: 'Fly', description: 'Режим полёта' },
+        { name: 'Noclip', description: 'Проход сквозь стены' },
+        { name: 'SpeedHack', description: 'Увеличение скорости бега' },
+        { name: 'JumpPower', description: 'Супер прыжки' }
+      ]
     }
   ];
 
@@ -113,7 +115,7 @@ export default function Index() {
               </span>
             </div>
             <nav className="hidden md:flex gap-6">
-              <a href="#products" className="text-sm font-medium hover:text-primary transition-colors">Продукты</a>
+              <a href="#features" className="text-sm font-medium hover:text-primary transition-colors">Функции</a>
               <a href="#reviews" className="text-sm font-medium hover:text-primary transition-colors">Отзывы</a>
               <a href="#pricing" className="text-sm font-medium hover:text-primary transition-colors">Цены</a>
               <a href="#guides" className="text-sm font-medium hover:text-primary transition-colors">Гайды</a>
@@ -183,57 +185,54 @@ export default function Index() {
           </div>
         </section>
 
-        <section id="products" className="py-20 px-4 bg-white/50 backdrop-blur-sm">
+        <section id="features" className="py-20 px-4 bg-white/50 backdrop-blur-sm">
           <div className="container">
             <div className="text-center mb-12 animate-fade-in">
-              <Badge className="mb-4 bg-primary text-white">Наши продукты</Badge>
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">Выбери свой стиль игры</h2>
+              <Badge className="mb-4 bg-primary text-white">Функционал</Badge>
+              <h2 className="text-4xl md:text-5xl font-bold mb-4">Всё что нужно для победы</h2>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                Каждый продукт создан с любовью и протестирован тысячами игроков
+                17 мощных функций в одном чите — от прицеливания до телепортации
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {products.map((product, index) => (
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              {features.map((category, categoryIndex) => (
                 <Card 
-                  key={product.id} 
-                  className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer animate-fade-in border-2 hover:border-primary bg-white/80 backdrop-blur-sm"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                  onClick={() => setPurchaseOpen(true)}
+                  key={categoryIndex} 
+                  className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 animate-fade-in border-2 hover:border-primary bg-white/80 backdrop-blur-sm"
+                  style={{ animationDelay: `${categoryIndex * 0.15}s` }}
                 >
                   <CardHeader>
-                    <div className="flex items-start justify-between mb-2">
-                      <div className="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
-                        <Icon name="Zap" size={24} className="text-white" />
+                    <div className="flex items-center gap-4 mb-4">
+                      <div className={`w-16 h-16 bg-gradient-to-br ${category.color} rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform`}>
+                        <Icon name={category.icon as any} size={32} className="text-white" />
                       </div>
-                      <Badge className="bg-gradient-to-r from-accent to-orange-400 text-white border-0">
-                        {product.badge}
-                      </Badge>
+                      <CardTitle className="text-2xl">{category.category}</CardTitle>
                     </div>
-                    <CardTitle className="text-2xl">{product.name}</CardTitle>
-                    <CardDescription className="text-base">{product.description}</CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <div className="space-y-2 mb-4">
-                      {product.features.map((feature, i) => (
-                        <div key={i} className="flex items-center gap-2 text-sm">
-                          <Icon name="Check" size={16} className="text-primary" />
-                          <span>{feature}</span>
+                    <div className="space-y-4">
+                      {category.items.map((item, itemIndex) => (
+                        <div key={itemIndex} className="group/item">
+                          <div className="flex items-start gap-3">
+                            <div className="w-6 h-6 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5 group-hover/item:bg-primary/20 transition-colors">
+                              <Icon name="Check" size={14} className="text-primary" />
+                            </div>
+                            <div>
+                              <div className="font-semibold text-sm group-hover/item:text-primary transition-colors">{item.name}</div>
+                              <div className="text-xs text-muted-foreground mt-0.5">{item.description}</div>
+                            </div>
+                          </div>
                         </div>
                       ))}
                     </div>
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <div className="flex items-center gap-1">
-                        <Icon name="Star" size={16} className="text-yellow-500 fill-yellow-500" />
-                        <span className="font-semibold text-foreground">{product.rating}</span>
-                      </div>
-                      <span>•</span>
-                      <span>{product.reviews} отзывов</span>
-                    </div>
                   </CardContent>
                   <CardFooter>
-                    <Button className="w-full bg-gradient-to-r from-primary to-secondary hover:opacity-90">
+                    <Button 
+                      className="w-full bg-gradient-to-r from-primary to-secondary hover:opacity-90"
+                      onClick={() => setPurchaseOpen(true)}
+                    >
                       <Icon name="ShoppingBag" size={16} className="mr-2" />
-                      Купить сейчас
+                      Купить доступ
                     </Button>
                   </CardFooter>
                 </Card>
