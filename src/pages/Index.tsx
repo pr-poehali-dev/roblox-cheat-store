@@ -529,17 +529,40 @@ export default function Index() {
                     <CardTitle className="text-xl">{member.name}</CardTitle>
                     <CardDescription className="text-sm">{member.role}</CardDescription>
                   </CardHeader>
-                  <CardFooter>
+                  <CardFooter className="flex-col gap-2">
+                    <p className="text-sm text-muted-foreground">{member.telegram}</p>
                     <Button 
                       className="w-full bg-gradient-to-r from-primary to-secondary hover:opacity-90"
                       onClick={() => window.open(`https://t.me/${member.telegram.replace('@', '')}`, '_blank')}
                     >
                       <Icon name="Send" size={16} className="mr-2" />
-                      {member.telegram}
+                      Написать
                     </Button>
                   </CardFooter>
                 </Card>
               ))}
+            </div>
+            
+            <div className="mt-16 text-center animate-fade-in">
+              <Card className="bg-gradient-to-r from-primary to-secondary text-white border-none max-w-2xl mx-auto">
+                <CardHeader>
+                  <CardTitle className="text-3xl mb-2">Мы сидим тут 💬</CardTitle>
+                  <CardDescription className="text-white/90 text-lg">
+                    Присоединяйся к нашему Telegram-каналу для новостей, обновлений и общения с комьюнити
+                  </CardDescription>
+                </CardHeader>
+                <CardFooter className="justify-center">
+                  <Button 
+                    size="lg"
+                    variant="secondary"
+                    className="text-lg px-8"
+                    onClick={() => window.open('https://t.me/your_channel', '_blank')}
+                  >
+                    <Icon name="Send" size={20} className="mr-2" />
+                    Перейти в Telegram
+                  </Button>
+                </CardFooter>
+              </Card>
             </div>
           </div>
         </section>
