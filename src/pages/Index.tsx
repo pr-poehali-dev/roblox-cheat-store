@@ -614,9 +614,7 @@ export default function Index() {
                 </Button>
               </div>
             </div>
-            <div className="text-center mt-8 pt-8 border-t border-white/20 text-sm text-white/70">
-              © 2024 Roblox-Cheat. Все права защищены.
-            </div>
+            <div className="text-center mt-8 pt-8 border-t border-white/20 text-sm text-white/70">© 2025 Roblox-Cheat. Все права защищены.</div>
           </div>
         </footer>
       </div>
