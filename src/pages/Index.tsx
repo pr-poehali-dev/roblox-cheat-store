@@ -11,6 +11,7 @@ import Icon from '@/components/ui/icon';
 
 export default function Index() {
   const [loginOpen, setLoginOpen] = useState(false);
+  const [registerOpen, setRegisterOpen] = useState(false);
   const [demoOpen, setDemoOpen] = useState(false);
   const [purchaseOpen, setPurchaseOpen] = useState(false);
   const [subscriptionPeriod, setSubscriptionPeriod] = useState(2);
@@ -47,8 +48,7 @@ export default function Index() {
         { name: 'Predict', description: 'Предсказание движения цели' },
         { name: 'Lock Parts', description: 'Выбор части тела для прицеливания' },
         { name: 'Smooth', description: 'Плавность наведения прицела' },
-        { name: 'Fov Visible', description: 'Видимость зоны прицеливания' },
-        { name: 'Fov Color', description: 'Настройка цвета зоны прицеливания' }
+        { name: 'Fov Visible', description: 'Видимость зоны прицеливания' }
       ]
     },
     {
@@ -107,6 +107,15 @@ export default function Index() {
         <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-float"></div>
         <div className="absolute top-40 right-20 w-96 h-96 bg-secondary/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }}></div>
         <div className="absolute bottom-20 left-1/3 w-80 h-80 bg-accent/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute top-1/2 left-1/4 w-64 h-64 bg-primary/5 rounded-full blur-3xl animate-float" style={{ animationDelay: '0.5s' }}></div>
+        <div className="absolute bottom-40 right-1/4 w-96 h-96 bg-secondary/5 rounded-full blur-3xl animate-float" style={{ animationDelay: '1.5s' }}></div>
+        <div className="absolute top-1/3 right-10 w-48 h-48 bg-accent/8 rounded-full blur-2xl animate-float" style={{ animationDelay: '2.5s' }}></div>
+        
+        <div className="absolute top-10 right-1/3 w-2 h-2 bg-primary rounded-full animate-float opacity-50" style={{ animationDelay: '0.3s' }}></div>
+        <div className="absolute top-1/4 left-1/2 w-3 h-3 bg-secondary rounded-full animate-float opacity-40" style={{ animationDelay: '1.2s' }}></div>
+        <div className="absolute bottom-1/3 right-1/2 w-2 h-2 bg-accent rounded-full animate-float opacity-60" style={{ animationDelay: '2.1s' }}></div>
+        <div className="absolute top-2/3 left-20 w-3 h-3 bg-primary rounded-full animate-float opacity-30" style={{ animationDelay: '0.8s' }}></div>
+        <div className="absolute bottom-1/4 right-20 w-2 h-2 bg-secondary rounded-full animate-float opacity-50" style={{ animationDelay: '1.8s' }}></div>
       </div>
 
       <div className="relative z-10">
@@ -576,19 +585,51 @@ export default function Index() {
           </DialogHeader>
           <div className="space-y-4 py-4">
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
-              <Input id="email" type="email" placeholder="твой@email.ru" />
+              <Label htmlFor="login-username">Никнейм</Label>
+              <Input id="login-username" type="text" placeholder="твой_ник" />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="password">Пароль</Label>
-              <Input id="password" type="password" placeholder="••••••••" />
+              <Label htmlFor="login-password">Пароль</Label>
+              <Input id="login-password" type="password" placeholder="••••••••" />
             </div>
             <Button className="w-full bg-gradient-to-r from-primary to-secondary">
               <Icon name="LogIn" size={16} className="mr-2" />
               Войти
             </Button>
             <div className="text-center text-sm text-muted-foreground">
-              Нет аккаунта? <a href="#" className="text-primary hover:underline">Зарегистрируйся</a>
+              Нет аккаунта? <button onClick={() => { setLoginOpen(false); setRegisterOpen(true); }} className="text-primary hover:underline">Зарегистрируйся</button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={registerOpen} onOpenChange={setRegisterOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Регистрация</DialogTitle>
+            <DialogDescription>
+              Создай аккаунт чтобы покупать и управлять подписками
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4 py-4">
+            <div className="space-y-2">
+              <Label htmlFor="register-username">Никнейм</Label>
+              <Input id="register-username" type="text" placeholder="придумай_ник" />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="register-password">Пароль</Label>
+              <Input id="register-password" type="password" placeholder="••••••••" />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="register-email">Почта</Label>
+              <Input id="register-email" type="email" placeholder="твой@email.ru" />
+            </div>
+            <Button className="w-full bg-gradient-to-r from-primary to-secondary">
+              <Icon name="UserPlus" size={16} className="mr-2" />
+              Зарегистрироваться
+            </Button>
+            <div className="text-center text-sm text-muted-foreground">
+              Уже есть аккаунт? <button onClick={() => { setRegisterOpen(false); setLoginOpen(true); }} className="text-primary hover:underline">Войти</button>
             </div>
           </div>
         </DialogContent>
