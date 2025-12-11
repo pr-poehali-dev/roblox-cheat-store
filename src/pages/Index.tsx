@@ -104,19 +104,19 @@ export default function Index() {
   const supportTeam = [
     { 
       name: 'Shizu', 
-      telegram: '@shizu_support',
+      telegram: '@GlDrawElements',
       avatar: 'https://cdn.poehali.dev/projects/6103f50e-ced6-4439-a4e1-c6dd915768e0/files/77bcda6c-df37-49e4-9eba-a84f51e1ce67.jpg',
       role: 'Старший специалист'
     },
     { 
       name: 'Belka', 
-      telegram: '@belka_support',
+      telegram: '@Kosty2323',
       avatar: 'https://cdn.poehali.dev/projects/6103f50e-ced6-4439-a4e1-c6dd915768e0/files/d3f946e5-dead-47c9-81a3-d5b86de23888.jpg',
       role: 'Техподдержка'
     },
     { 
       name: 'KripKripo4ek', 
-      telegram: '@kripkripo4ek',
+      telegram: '@KripKripo1ek',
       avatar: 'https://cdn.poehali.dev/projects/6103f50e-ced6-4439-a4e1-c6dd915768e0/files/207f5561-9219-4a50-8aa6-8d7cb930dced.jpg',
       role: 'Техподдержка'
     }
