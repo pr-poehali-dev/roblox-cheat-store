@@ -371,9 +371,7 @@ export default function Index() {
                   <Icon name="ShoppingCart" size={20} className="mr-2" />
                   Купить за {calculatePrice(subscriptionPeriod)}₽
                 </Button>
-                <p className="text-xs text-center text-muted-foreground">
-                  Безопасная оплата • Мгновенная активация • Гарантия возврата 7 дней
-                </p>
+                <p className="text-xs text-center text-muted-foreground">Безопасная оплата • Мгновенная активация • Лучшие на рынке</p>
               </CardFooter>
             </Card>
           </div>
