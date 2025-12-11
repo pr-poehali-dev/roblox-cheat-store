@@ -16,22 +16,23 @@ export default function Index() {
   const [subscriptionPeriod, setSubscriptionPeriod] = useState(2);
 
   const periods = [
-    { days: 7, label: '7 дней', discount: 0 },
-    { days: 14, label: '14 дней', discount: 0 },
-    { days: 30, label: '1 месяц', discount: 0 },
-    { days: 60, label: '2 месяца', discount: 10 },
-    { days: 0, label: 'Навсегда', discount: 0 }
+    { days: 7, label: '7 дней', price: 150, discount: 0, oldPrice: 0 },
+    { days: 14, label: '14 дней', price: 285, discount: 5, oldPrice: 300 },
+    { days: 30, label: '1 месяц', price: 540, discount: 10, oldPrice: 600 },
+    { days: 60, label: '2 месяца', price: 1020, discount: 15, oldPrice: 1200 },
+    { days: 0, label: 'Навсегда', price: 3750, discount: 25, oldPrice: 5000 }
   ];
 
   const calculatePrice = (periodIndex: number) => {
-    const period = periods[periodIndex];
-    const basePrice = 500;
-    
-    if (period.days === 0) return 4999;
-    
-    const monthlyPrice = (period.days / 30) * basePrice;
-    const discount = monthlyPrice * (period.discount / 100);
-    return Math.round(monthlyPrice - discount);
+    return periods[periodIndex].price;
+  };
+
+  const getOldPrice = (periodIndex: number) => {
+    return periods[periodIndex].oldPrice;
+  };
+
+  const getDiscount = (periodIndex: number) => {
+    return periods[periodIndex].discount;
   };
 
   const features = [
@@ -325,14 +326,23 @@ export default function Index() {
                   </div>
                   
                   <div className="bg-gradient-to-br from-primary/5 to-secondary/5 rounded-2xl p-6 text-center">
-                    <div className="text-5xl font-bold text-primary mb-2">
-                      {calculatePrice(subscriptionPeriod)}₽
+                    <div className="flex items-center justify-center gap-3 mb-2">
+                      {getOldPrice(subscriptionPeriod) > 0 && (
+                        <div className="text-2xl font-bold text-muted-foreground line-through">
+                          {getOldPrice(subscriptionPeriod)}₽
+                        </div>
+                      )}
+                      <div className="text-5xl font-bold text-primary">
+                        {calculatePrice(subscriptionPeriod)}₽
+                      </div>
                     </div>
                     <div className="text-sm text-muted-foreground">
                       {periods[subscriptionPeriod].days === 0 ? 'Единоразовый платёж' : `${periods[subscriptionPeriod].label} доступа`}
                     </div>
-                    {periods[subscriptionPeriod].discount > 0 && (
-                      <Badge className="mt-2 bg-accent">Скидка {periods[subscriptionPeriod].discount}%</Badge>
+                    {getDiscount(subscriptionPeriod) > 0 && (
+                      <Badge className="mt-2 bg-gradient-to-r from-accent to-orange-400 text-white border-0">
+                        🔥 Скидка {getDiscount(subscriptionPeriod)}%
+                      </Badge>
                     )}
                   </div>
                 </div>
@@ -638,9 +648,21 @@ export default function Index() {
             
             <div className="bg-gradient-to-br from-primary/5 to-secondary/5 rounded-xl p-4 text-center">
               <div className="text-sm text-muted-foreground mb-1">{periods[subscriptionPeriod].label}</div>
-              <div className="text-4xl font-bold text-primary">
-                {calculatePrice(subscriptionPeriod)}₽
+              <div className="flex items-center justify-center gap-2 mb-2">
+                {getOldPrice(subscriptionPeriod) > 0 && (
+                  <div className="text-xl font-bold text-muted-foreground line-through">
+                    {getOldPrice(subscriptionPeriod)}₽
+                  </div>
+                )}
+                <div className="text-4xl font-bold text-primary">
+                  {calculatePrice(subscriptionPeriod)}₽
+                </div>
               </div>
+              {getDiscount(subscriptionPeriod) > 0 && (
+                <Badge className="bg-gradient-to-r from-accent to-orange-400 text-white border-0">
+                  🔥 Скидка {getDiscount(subscriptionPeriod)}%
+                </Badge>
+              )}
             </div>
 
             <div className="space-y-2">
