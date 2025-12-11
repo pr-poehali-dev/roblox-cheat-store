@@ -307,9 +307,12 @@ ESP (Extra Sensory Perception) - это функция, которая пока�
               <a href="#guides" className="text-sm font-medium hover:text-primary transition-colors">Гайды</a>
               <a href="#support" className="text-sm font-medium hover:text-primary transition-colors">Поддержка</a>
             </nav>
-            <Button className="animate-scale-in" onClick={() => setLoginOpen(true)}>
+            <Button className="animate-scale-in hidden md:flex" onClick={() => setLoginOpen(true)}>
               <Icon name="User" size={16} className="mr-2" />
               Войти
+            </Button>
+            <Button size="icon" variant="ghost" className="md:hidden">
+              <Icon name="Menu" size={24} />
             </Button>
           </div>
         </header>
@@ -321,16 +324,16 @@ ESP (Extra Sensory Perception) - это функция, которая пока�
                 <Badge className="mb-4 bg-gradient-to-r from-primary to-secondary text-white border-0">
                   🔥 Более 10,000 довольных игроков
                 </Badge>
-                <h1 className="text-5xl md:text-7xl font-bold leading-tight">
+                <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold leading-tight">
                   Стань <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">лучшим</span> в Roblox
                 </h1>
-                <p className="text-xl text-muted-foreground">
+                <p className="text-lg md:text-xl text-muted-foreground">
                   Профессиональные инструменты для улучшения игры. Легкая установка, регулярные обновления и круглосуточная поддержка.
                 </p>
-                <div className="flex gap-4 pt-4">
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4">
                   <Button 
                     size="lg" 
-                    className="text-lg px-8 bg-gradient-to-r from-primary to-secondary hover:opacity-90 transition-opacity"
+                    className="text-base sm:text-lg px-6 sm:px-8 w-full sm:w-auto bg-gradient-to-r from-primary to-secondary hover:opacity-90 transition-opacity"
                     onClick={() => setPurchaseOpen(true)}
                   >
                     <Icon name="ShoppingCart" size={20} className="mr-2" />
@@ -339,14 +342,14 @@ ESP (Extra Sensory Perception) - это функция, которая пока�
                   <Button 
                     size="lg" 
                     variant="outline" 
-                    className="text-lg px-8"
+                    className="text-base sm:text-lg px-6 sm:px-8 w-full sm:w-auto"
                     onClick={() => setDemoOpen(true)}
                   >
                     <Icon name="PlayCircle" size={20} className="mr-2" />
                     Смотреть демо
                   </Button>
                 </div>
-                <div className="flex gap-8 pt-4">
+                <div className="flex flex-wrap gap-6 sm:gap-8 pt-4">
                   <div>
                     <div className="text-3xl font-bold text-primary">10K+</div>
                     <div className="text-sm text-muted-foreground">Активных пользователей</div>
@@ -361,7 +364,7 @@ ESP (Extra Sensory Perception) - это функция, которая пока�
                   </div>
                 </div>
               </div>
-              <div className="flex-1 relative animate-scale-in">
+              <div className="flex-1 relative animate-scale-in hidden lg:block">
                 <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 blur-3xl rounded-full"></div>
                 <div className="relative w-full h-96 bg-gradient-to-br from-primary via-secondary to-accent rounded-3xl p-8 flex items-center justify-center animate-float">
                   <Icon name="Trophy" size={120} className="text-white/90" />
@@ -375,12 +378,12 @@ ESP (Extra Sensory Perception) - это функция, которая пока�
           <div className="container">
             <div className="text-center mb-12 animate-fade-in">
               <Badge className="mb-4 bg-primary text-white">Функционал</Badge>
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">Всё что нужно для победы</h2>
-              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Всё что нужно для победы</h2>
+              <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
                 17 мощных функций в одном чите — от прицеливания до телепортации
               </p>
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
               {features.map((category, categoryIndex) => (
                 <Card 
                   key={categoryIndex} 
@@ -431,12 +434,12 @@ ESP (Extra Sensory Perception) - это функция, которая пока�
           <div className="container">
             <div className="text-center mb-12 animate-fade-in">
               <Badge className="mb-4 bg-secondary text-white">Отзывы</Badge>
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">Что говорят игроки</h2>
-              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Что говорят игроки</h2>
+              <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
                 Тысячи довольных пользователей уже улучшили свою игру
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
               {reviews.map((review, index) => (
                 <Card key={index} className="animate-fade-in hover:shadow-xl transition-shadow bg-white/80 backdrop-blur-sm" style={{ animationDelay: `${index * 0.1}s` }}>
                   <CardHeader>
@@ -470,8 +473,8 @@ ESP (Extra Sensory Perception) - это функция, которая пока�
           <div className="container max-w-4xl">
             <div className="text-center mb-12 animate-fade-in">
               <Badge className="mb-4 bg-accent text-white">Покупка</Badge>
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">Один чит — все возможности</h2>
-              <p className="text-xl text-muted-foreground">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Один чит — все возможности</h2>
+              <p className="text-lg md:text-xl text-muted-foreground">
                 Выбери период подписки и получи полный доступ ко всем функциям
               </p>
             </div>
@@ -483,8 +486,8 @@ ESP (Extra Sensory Perception) - это функция, которая пока�
                     <Icon name="Zap" size={32} className="text-white" />
                   </div>
                   <div>
-                    <CardTitle className="text-3xl">Roblox-Cheat Ultimate</CardTitle>
-                    <CardDescription className="text-base">Все функции в одном пакете</CardDescription>
+                    <CardTitle className="text-2xl md:text-3xl">Roblox-Cheat Ultimate</CardTitle>
+                    <CardDescription className="text-sm md:text-base">Все функции в одном пакете</CardDescription>
                   </div>
                 </div>
                 
@@ -501,7 +504,7 @@ ESP (Extra Sensory Perception) - это функция, которая пока�
                       step={1}
                       className="py-4"
                     />
-                    <div className="flex justify-between text-xs text-muted-foreground mt-2">
+                    <div className="flex justify-between text-[10px] sm:text-xs text-muted-foreground mt-2">
                       {periods.map((p, i) => (
                         <span key={i} className={i === subscriptionPeriod ? 'text-primary font-semibold' : ''}>
                           {p.label}
@@ -517,7 +520,7 @@ ESP (Extra Sensory Perception) - это функция, которая пока�
                           {getOldPrice(subscriptionPeriod)}₽
                         </div>
                       )}
-                      <div className="text-5xl font-bold text-primary">
+                      <div className="text-4xl sm:text-5xl font-bold text-primary">
                         {calculatePrice(subscriptionPeriod)}₽
                       </div>
                     </div>
@@ -566,8 +569,8 @@ ESP (Extra Sensory Perception) - это функция, которая пока�
           <div className="container max-w-4xl">
             <div className="text-center mb-12 animate-fade-in">
               <Badge className="mb-4 bg-primary text-white">Демонстрация</Badge>
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">Смотри как это работает</h2>
-              <p className="text-xl text-muted-foreground">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Смотри как это работает</h2>
+              <p className="text-lg md:text-xl text-muted-foreground">
                 Видео-обзор всех возможностей чита
               </p>
             </div>
@@ -590,8 +593,8 @@ ESP (Extra Sensory Perception) - это функция, которая пока�
           <div className="container max-w-4xl">
             <div className="text-center mb-12 animate-fade-in">
               <Badge className="mb-4 bg-primary text-white">Обучение</Badge>
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">Гайды и инструкции</h2>
-              <p className="text-xl text-muted-foreground">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Гайды и инструкции</h2>
+              <p className="text-lg md:text-xl text-muted-foreground">
                 Пошаговые руководства для быстрого старта
               </p>
             </div>
@@ -633,8 +636,8 @@ ESP (Extra Sensory Perception) - это функция, которая пока�
           <div className="container max-w-4xl">
             <div className="text-center mb-12 animate-fade-in">
               <Badge className="mb-4 bg-secondary text-white">Новости</Badge>
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">Последние обновления</h2>
-              <p className="text-xl text-muted-foreground">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Последние обновления</h2>
+              <p className="text-lg md:text-xl text-muted-foreground">
                 Следи за новыми функциями и релизами
               </p>
             </div>
@@ -660,12 +663,12 @@ ESP (Extra Sensory Perception) - это функция, которая пока�
           <div className="container max-w-4xl">
             <div className="text-center mb-12 animate-fade-in">
               <Badge className="mb-4 bg-accent text-white">Поддержка</Badge>
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">Команда поддержки</h2>
-              <p className="text-xl text-muted-foreground">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Команда поддержки</h2>
+              <p className="text-lg md:text-xl text-muted-foreground">
                 Наши специалисты всегда готовы помочь в Telegram
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {supportTeam.map((member, index) => (
                 <Card key={index} className="animate-fade-in hover:shadow-xl transition-all hover:-translate-y-1 bg-white/80 backdrop-blur-sm" style={{ animationDelay: `${index * 0.1}s` }}>
                   <CardHeader className="text-center">
@@ -689,19 +692,19 @@ ESP (Extra Sensory Perception) - это функция, которая пока�
               ))}
             </div>
             
-            <div className="mt-16 text-center animate-fade-in">
+            <div className="mt-12 sm:mt-16 text-center animate-fade-in px-4">
               <Card className="bg-gradient-to-r from-primary to-secondary text-white border-none max-w-2xl mx-auto">
-                <CardHeader>
-                  <CardTitle className="text-3xl mb-2">Мы сидим тут 💬</CardTitle>
-                  <CardDescription className="text-white/90 text-lg">
+                <CardHeader className="px-4 sm:px-6">
+                  <CardTitle className="text-2xl sm:text-3xl mb-2">Мы сидим тут 💬</CardTitle>
+                  <CardDescription className="text-white/90 text-base sm:text-lg">
                     Присоединяйся к нашему Telegram-каналу для новостей, обновлений и общения с комьюнити
                   </CardDescription>
                 </CardHeader>
-                <CardFooter className="justify-center">
+                <CardFooter className="justify-center px-4 sm:px-6">
                   <Button 
                     size="lg"
                     variant="secondary"
-                    className="text-lg px-8"
+                    className="text-base sm:text-lg px-6 sm:px-8 w-full sm:w-auto"
                     onClick={() => window.open('https://t.me/your_channel', '_blank')}
                   >
                     <Icon name="Send" size={20} className="mr-2" />
@@ -725,7 +728,7 @@ ESP (Extra Sensory Perception) - это функция, которая пока�
                   <div className="text-sm text-white/80">Стань лучшим игроком</div>
                 </div>
               </div>
-              <div className="flex gap-6 text-sm">
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 text-sm text-center">
                 <a href="#" className="hover:text-white/80 transition-colors">Пользовательское соглашение</a>
                 <a href="#" className="hover:text-white/80 transition-colors">Политика конфиденциальности</a>
                 <a href="#" className="hover:text-white/80 transition-colors">Контакты</a>
