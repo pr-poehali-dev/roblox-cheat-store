@@ -1,0 +1,1452 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roblox-Cheat - Стань лучшим в Roblox</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --background: #fcfcfd;
+            --foreground: #25262b;
+            --card: #ffffff;
+            --primary: #8b5cf6;
+            --secondary: #0ea5e9;
+            --accent: #f97316;
+            --muted: #f1f3f5;
+            --muted-foreground: #6c757d;
+            --border: #e9ecef;
+            --radius: 1rem;
+        }
+
+        body {
+            font-family: "Open Sans", sans-serif;
+            background: linear-gradient(135deg, var(--background) 0%, #f3e8ff 50%, #dbeafe 100%);
+            color: var(--foreground);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: "Rubik", sans-serif;
+            font-weight: 700;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes fade-in {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .animate-fade-in {
+            animation: fade-in 0.6s ease-out forwards;
+        }
+
+        .bg-blur-circle {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 0;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .logo-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--foreground);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-lg {
+            padding: 1rem 2rem;
+            font-size: 1.125rem;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .badge-primary {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .hero {
+            padding: 5rem 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--muted-foreground);
+            margin-bottom: 2rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-item h3 {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+
+        .stat-item p {
+            font-size: 0.875rem;
+            color: var(--muted-foreground);
+        }
+
+        .section {
+            padding: 5rem 1rem;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border: 2px solid var(--border);
+            border-radius: var(--radius);
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border-color: var(--primary);
+        }
+
+        .grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .grid-4 {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        .feature-icon {
+            width: 4rem;
+            height: 4rem;
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .icon-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+
+        .icon-secondary {
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+        }
+
+        .icon-accent {
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .check-icon {
+            width: 1.5rem;
+            height: 1.5rem;
+            background: rgba(139, 92, 246, 0.1);
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: var(--primary);
+        }
+
+        .review-card {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .review-avatar {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+        }
+
+        .stars {
+            color: #fbbf24;
+            font-size: 1rem;
+        }
+
+        .mobile-menu {
+            display: none;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: var(--radius);
+            padding: 2rem;
+            max-width: 500px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal-content-large {
+            max-width: 800px;
+        }
+
+        .modal-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-header p {
+            color: var(--muted-foreground);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid var(--border);
+            border-radius: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--muted-foreground);
+        }
+
+        .support-team {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .support-card {
+            text-align: center;
+        }
+
+        .support-avatar {
+            width: 6rem;
+            height: 6rem;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            border: 4px solid var(--primary);
+            overflow: hidden;
+        }
+
+        .support-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .telegram-promo {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem;
+            border-radius: var(--radius);
+            text-align: center;
+        }
+
+        footer {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 3rem 1rem;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.9;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-btn {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            background: white;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+
+        .social-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .accordion-item {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .accordion-content-inner {
+            padding: 0 1.5rem 1.5rem;
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 500px;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            background: var(--muted);
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .slider {
+            width: 100%;
+            height: 0.5rem;
+            background: var(--muted);
+            border-radius: 1rem;
+            position: relative;
+            cursor: pointer;
+            margin: 1rem 0;
+        }
+
+        .slider-track {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 1rem;
+        }
+
+        .slider-thumb {
+            position: absolute;
+            width: 1.5rem;
+            height: 1.5rem;
+            background: white;
+            border: 3px solid var(--primary);
+            border-radius: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            cursor: grab;
+        }
+
+        .slider-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: var(--muted-foreground);
+            margin-top: 0.5rem;
+        }
+
+        .price-display {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(14, 165, 233, 0.1));
+            padding: 2rem;
+            border-radius: var(--radius);
+            text-align: center;
+            margin: 1.5rem 0;
+        }
+
+        .price-old {
+            font-size: 1.5rem;
+            text-decoration: line-through;
+            color: var(--muted-foreground);
+            margin-right: 0.5rem;
+        }
+
+        .price-new {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                font-size: 14px;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .mobile-menu.active {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(10px);
+                padding: 1rem;
+                border-bottom: 1px solid var(--border);
+                animation: fade-in 0.3s;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .stats {
+                gap: 1rem;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .grid-3, .grid-4 {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0;">
+        <div class="bg-blur-circle animate-float" style="top: 5rem; left: 5%; width: 18rem; height: 18rem; background: rgba(139, 92, 246, 0.1);"></div>
+        <div class="bg-blur-circle animate-float" style="top: 10rem; right: 10%; width: 24rem; height: 24rem; background: rgba(14, 165, 233, 0.1); animation-delay: 1s;"></div>
+        <div class="bg-blur-circle animate-float" style="bottom: 5rem; left: 33%; width: 20rem; height: 20rem; background: rgba(249, 115, 22, 0.1); animation-delay: 2s;"></div>
+    </div>
+
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">
+                    <div class="logo-icon">🎮</div>
+                    <span class="logo-text">Roblox-Cheat</span>
+                </a>
+                <nav>
+                    <a href="#features">Функции</a>
+                    <a href="#reviews">Отзывы</a>
+                    <a href="#pricing">Цены</a>
+                    <a href="#guides">Гайды</a>
+                    <a href="#support">Поддержка</a>
+                    <button class="btn btn-primary" onclick="openModal('login')">
+                        👤 Войти
+                    </button>
+                </nav>
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                    ☰
+                </button>
+            </div>
+            <div class="mobile-menu" id="mobileMenu">
+                <a href="#features" onclick="toggleMobileMenu()">Функции</a>
+                <a href="#reviews" onclick="toggleMobileMenu()">Отзывы</a>
+                <a href="#pricing" onclick="toggleMobileMenu()">Цены</a>
+                <a href="#guides" onclick="toggleMobileMenu()">Гайды</a>
+                <a href="#support" onclick="toggleMobileMenu()">Поддержка</a>
+                <button class="btn btn-primary" style="width: 100%;" onclick="openModal('login'); toggleMobileMenu();">
+                    👤 Войти
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="animate-fade-in">
+                    <span class="badge badge-primary">🔥 Более 10,000 довольных игроков</span>
+                    <h1>Стань <span class="gradient-text">лучшим</span> в Roblox</h1>
+                    <p>Профессиональные инструменты для улучшения игры. Легкая установка, регулярные обновления и круглосуточная поддержка.</p>
+                    <div class="hero-actions">
+                        <button class="btn btn-primary btn-lg" onclick="openModal('purchase')">
+                            🛒 Выбрать продукт
+                        </button>
+                        <button class="btn btn-outline btn-lg" onclick="openModal('demo')">
+                            ▶️ Смотреть демо
+                        </button>
+                    </div>
+                    <div class="stats">
+                        <div class="stat-item">
+                            <h3>10K+</h3>
+                            <p>Активных пользователей</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>4.9</h3>
+                            <p>Средний рейтинг</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>24/7</h3>
+                            <p>Поддержка</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="section" style="background: rgba(255, 255, 255, 0.5);">
+        <div class="container">
+            <div class="section-header animate-fade-in">
+                <span class="badge badge-primary">Функционал</span>
+                <h2>Всё что нужно для победы</h2>
+                <p style="color: var(--muted-foreground); font-size: 1.125rem;">17 мощных функций в одном чите — от прицеливания до телепортации</p>
+            </div>
+            <div class="grid grid-3">
+                <div class="card animate-fade-in">
+                    <div class="feature-icon icon-primary">🎯</div>
+                    <h3>Прицеливание</h3>
+                    <ul class="feature-list">
+                        <li><div class="check-icon">✓</div><div><strong>AimBot</strong><br><small>Автоматическое прицеливание на врагов</small></div></li>
+                        <li><div class="check-icon">✓</div><div><strong>TriggerBot</strong><br><small>Автоматическая стрельба при наведении</small></div></li>
+                        <li><div class="check-icon">✓</div><div><strong>SilentAim</strong><br><small>Невидимое прицеливание для стримов</small></div></li>
+                        <li><div class="check-icon">✓</div><div><strong>Predict</strong><br><small>Предсказание движения цели</small></div></li>
+                        <li><div class="check-icon">✓</div><div><strong>Lock Parts</strong><br><small>Выбор части тела для прицеливания</small></div></li>
+                        <li><div class="check-icon">✓</div><div><strong>Smooth</strong><br><small>Плавность наведения прицела</small></div></li>
+                        <li><div class="check-icon">✓</div><div><strong>Fov Visible</strong><br><small>Видимость зоны прицеливания</small></div></li>
+                    </ul>
+                    <button class="btn btn-primary" style="width: 100%; margin-top: 1rem;" onclick="openModal('purchase')">
+                        🛍️ Купить доступ
+                    </button>
+                </div>
+
+                <div class="card animate-fade-in" style="animation-delay: 0.15s;">
+                    <div class="feature-icon icon-secondary">👁️</div>
+                    <h3>Визуализация</h3>
+                    <ul class="feature-list">
+                        <li><div class="check-icon">✓</div><div><strong>ESP</strong><br><small>Видимость игроков через стены</small></div></li>
+                        <li><div class="check-icon">✓</div><div><strong>Distance</strong><br><small>Отображение дистанции до игроков</small></div></li>
+                        <li><div class="check-icon">✓</div><div><strong>NickName</strong><br><small>Показ имён игроков</small></div></li>
+                        <li><div class="check-icon">✓</div><div><strong>Health</strong><br><small>Индикатор здоровья врагов</small></div></li>
+                        <li><div class="check-icon">✓</div><div><strong>Skeleton</strong><br><small>Скелетон игроков</small></div></li>
+                        <li><div class="check-icon">✓</div><div><strong>Tracers</strong><br><small>Линии к игрокам</small></div></li>
+                        <li><div class="check-icon">✓</div><div><strong>StreamProof</strong><br><small>Защита от обнаружения на стриме</small></div></li>
+                    </ul>
+                    <button class="btn btn-primary" style="width: 100%; margin-top: 1rem;" onclick="openModal('purchase')">
+                        🛍️ Купить доступ
+                    </button>
+                </div>
+
+                <div class="card animate-fade-in" style="animation-delay: 0.3s;">
+                    <div class="feature-icon icon-accent">⚡</div>
+                    <h3>Передвижение</h3>
+                    <ul class="feature-list">
+                        <li><div class="check-icon">✓</div><div><strong>SpectatePlayer</strong><br><small>Наблюдение за игроками</small></div></li>
+                        <li><div class="check-icon">✓</div><div><strong>Teleport to player</strong><br><small>Телепорт к любому игроку</small></div></li>
+                        <li><div class="check-icon">✓</div><div><strong>Teleport to coordinate</strong><br><small>Телепорт по координатам</small></div></li>
+                        <li><div class="check-icon">✓</div><div><strong>Fly</strong><br><small>Режим полёта</small></div></li>
+                        <li><div class="check-icon">✓</div><div><strong>Noclip</strong><br><small>Проход сквозь стены</small></div></li>
+                        <li><div class="check-icon">✓</div><div><strong>SpeedHack</strong><br><small>Увеличение скорости бега</small></div></li>
+                        <li><div class="check-icon">✓</div><div><strong>JumpPower</strong><br><small>Супер прыжки</small></div></li>
+                    </ul>
+                    <button class="btn btn-primary" style="width: 100%; margin-top: 1rem;" onclick="openModal('purchase')">
+                        🛍️ Купить доступ
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reviews" class="section">
+        <div class="container">
+            <div class="section-header animate-fade-in">
+                <span class="badge badge-primary" style="background: var(--secondary);">Отзывы</span>
+                <h2>Что говорят игроки</h2>
+                <p style="color: var(--muted-foreground); font-size: 1.125rem;">Тысячи довольных пользователей уже улучшили свою игру</p>
+            </div>
+            <div class="grid grid-4">
+                <div class="review-card animate-fade-in">
+                    <div class="review-header">
+                        <div class="review-avatar">Н</div>
+                        <div>
+                            <strong>Никита М.</strong>
+                            <div style="font-size: 0.75rem; color: var(--muted-foreground);">2 дня назад</div>
+                        </div>
+                    </div>
+                    <div class="stars">★★★★★</div>
+                    <p style="margin-top: 0.5rem;">Супер работает! Легко установил и сразу начал побеждать 🔥</p>
+                </div>
+                <div class="review-card animate-fade-in" style="animation-delay: 0.1s;">
+                    <div class="review-header">
+                        <div class="review-avatar">А</div>
+                        <div>
+                            <strong>Артём К.</strong>
+                            <div style="font-size: 0.75rem; color: var(--muted-foreground);">5 дней назад</div>
+                        </div>
+                    </div>
+                    <div class="stars">★★★★★</div>
+                    <p style="margin-top: 0.5rem;">Лучший чит что я пробовал! Поддержка отвечает быстро</p>
+                </div>
+                <div class="review-card animate-fade-in" style="animation-delay: 0.2s;">
+                    <div class="review-header">
+                        <div class="review-avatar">Д</div>
+                        <div>
+                            <strong>Даша Л.</strong>
+                            <div style="font-size: 0.75rem; color: var(--muted-foreground);">1 неделя назад</div>
+                        </div>
+                    </div>
+                    <div class="stars">★★★★☆</div>
+                    <p style="margin-top: 0.5rem;">Хороший функционал, но хотелось бы больше настроек</p>
+                </div>
+                <div class="review-card animate-fade-in" style="animation-delay: 0.3s;">
+                    <div class="review-header">
+                        <div class="review-avatar">М</div>
+                        <div>
+                            <strong>Максим В.</strong>
+                            <div style="font-size: 0.75rem; color: var(--muted-foreground);">2 недели назад</div>
+                        </div>
+                    </div>
+                    <div class="stars">★★★★★</div>
+                    <p style="margin-top: 0.5rem;">Работает идеально! Друзьям уже посоветовал</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="section" style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.05), rgba(14, 165, 233, 0.05));">
+        <div class="container" style="max-width: 800px;">
+            <div class="section-header animate-fade-in">
+                <span class="badge badge-primary" style="background: var(--accent);">Покупка</span>
+                <h2>Один чит — все возможности</h2>
+                <p style="color: var(--muted-foreground); font-size: 1.125rem;">Выбери период подписки и получи полный доступ ко всем функциям</p>
+            </div>
+            <div class="card animate-fade-in">
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem;">
+                    <div class="feature-icon icon-primary" style="width: 4rem; height: 4rem;">⚡</div>
+                    <div>
+                        <h3 style="font-size: 1.75rem; margin: 0;">Roblox-Cheat Ultimate</h3>
+                        <p style="color: var(--muted-foreground); margin: 0;">Все функции в одном пакете</p>
+                    </div>
+                </div>
+
+                <div id="pricingContent">
+                    <label style="font-weight: 600; margin-bottom: 1rem; display: block;">Выбери период подписки:</label>
+                    <input type="range" id="periodSlider" min="0" max="4" value="2" step="1" class="slider" style="width: 100%;">
+                    <div class="slider-labels">
+                        <span>7 дней</span>
+                        <span>14 дней</span>
+                        <span>1 месяц</span>
+                        <span>2 месяца</span>
+                        <span>Навсегда</span>
+                    </div>
+
+                    <div class="price-display">
+                        <div style="color: var(--muted-foreground); margin-bottom: 0.5rem;" id="periodLabel">1 месяц</div>
+                        <div>
+                            <span class="price-old" id="oldPrice" style="display: none;">600₽</span>
+                            <span class="price-new" id="newPrice">540₽</span>
+                        </div>
+                        <div style="margin-top: 0.5rem;">
+                            <span class="badge badge-primary" id="discountBadge" style="background: linear-gradient(90deg, var(--accent), #fb923c);">🔥 Скидка 10%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin: 2rem 0;">
+                    <div style="font-weight: 600; margin-bottom: 1rem;">Что входит:</div>
+                    <ul class="feature-list">
+                        <li><div class="check-icon">✓</div><span>ESP Мастер - видимость через стены</span></li>
+                        <li><div class="check-icon">✓</div><span>Аимбот Про - автоприцеливание</span></li>
+                        <li><div class="check-icon">✓</div><span>Спид Хак - ускорение персонажа</span></li>
+                        <li><div class="check-icon">✓</div><span>Все будущие обновления</span></li>
+                        <li><div class="check-icon">✓</div><span>VIP поддержка 24/7</span></li>
+                        <li><div class="check-icon">✓</div><span>Защита от бана</span></li>
+                    </ul>
+                </div>
+
+                <button class="btn btn-primary btn-lg" style="width: 100%;" onclick="openModal('purchase')">
+                    🛒 Купить за <span id="btnPrice">540</span>₽
+                </button>
+                <p style="text-align: center; font-size: 0.75rem; color: var(--muted-foreground); margin-top: 1rem;">
+                    Безопасная оплата • Мгновенная активация • Лучшие на рынке
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="video" class="section">
+        <div class="container" style="max-width: 800px;">
+            <div class="section-header animate-fade-in">
+                <span class="badge badge-primary">Демонстрация</span>
+                <h2>Смотри как это работает</h2>
+                <p style="color: var(--muted-foreground); font-size: 1.125rem;">Видео-обзор всех возможностей чита</p>
+            </div>
+            <div class="card animate-fade-in">
+                <div class="video-container">
+                    <iframe src="https://vkvideo.ru/video_ext.php?oid=-229092943&id=456239125&hash=020f569c96e328dd" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="guides" class="section" style="background: rgba(255, 255, 255, 0.5);">
+        <div class="container" style="max-width: 800px;">
+            <div class="section-header animate-fade-in">
+                <span class="badge badge-primary">Обучение</span>
+                <h2>Гайды и инструкции</h2>
+                <p style="color: var(--muted-foreground); font-size: 1.125rem;">Пошаговые руководства для быстрого старта</p>
+            </div>
+            <div>
+                <div class="accordion-item animate-fade-in" onclick="toggleAccordion(this)">
+                    <div class="accordion-header">
+                        <div>
+                            <div style="font-size: 1.125rem; font-weight: 600;">🎮 Первая установка</div>
+                            <div style="font-size: 0.875rem; color: var(--muted-foreground);">Пошаговая инструкция для новичков</div>
+                        </div>
+                        <span class="badge" style="background: var(--muted); color: var(--foreground);">5 мин</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p style="margin-bottom: 1rem;">Подробная инструкция с видео и скриншотами. Следуй простым шагам и всё получится!</p>
+                            <button class="btn btn-primary" onclick="event.stopPropagation(); openGuide(0);">
+                                📄 Читать текст
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item animate-fade-in" style="animation-delay: 0.1s;" onclick="toggleAccordion(this)">
+                    <div class="accordion-header">
+                        <div>
+                            <div style="font-size: 1.125rem; font-weight: 600;">⚙️ Настройка ESP</div>
+                            <div style="font-size: 0.875rem; color: var(--muted-foreground);">Как настроить отображение игроков</div>
+                        </div>
+                        <span class="badge" style="background: var(--muted); color: var(--foreground);">3 мин</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p style="margin-bottom: 1rem;">Подробная инструкция с видео и скриншотами. Следуй простым шагам и всё получится!</p>
+                            <button class="btn btn-primary" onclick="event.stopPropagation(); openGuide(1);">
+                                📄 Читать текст
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item animate-fade-in" style="animation-delay: 0.2s;" onclick="toggleAccordion(this)">
+                    <div class="accordion-header">
+                        <div>
+                            <div style="font-size: 1.125rem; font-weight: 600;">🎯 Настройка аимбота</div>
+                            <div style="font-size: 0.875rem; color: var(--muted-foreground);">Оптимальные параметры прицеливания</div>
+                        </div>
+                        <span class="badge" style="background: var(--muted); color: var(--foreground);">4 мин</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p style="margin-bottom: 1rem;">Подробная инструкция с видео и скриншотами. Следуй простым шагам и всё получится!</p>
+                            <button class="btn btn-primary" onclick="event.stopPropagation(); openGuide(2);">
+                                📄 Читать текст
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item animate-fade-in" style="animation-delay: 0.3s;" onclick="toggleAccordion(this)">
+                    <div class="accordion-header">
+                        <div>
+                            <div style="font-size: 1.125rem; font-weight: 600;">🛡️ Защита от бана</div>
+                            <div style="font-size: 0.875rem; color: var(--muted-foreground);">Как играть безопасно</div>
+                        </div>
+                        <span class="badge" style="background: var(--muted); color: var(--foreground);">6 мин</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p style="margin-bottom: 1rem;">Подробная инструкция с видео и скриншотами. Следуй простым шагам и всё получится!</p>
+                            <button class="btn btn-primary" onclick="event.stopPropagation(); openGuide(3);">
+                                📄 Читать текст
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="news" class="section" style="background: linear-gradient(135deg, rgba(14, 165, 233, 0.05), rgba(139, 92, 246, 0.05));">
+        <div class="container" style="max-width: 800px;">
+            <div class="section-header animate-fade-in">
+                <span class="badge badge-primary" style="background: var(--secondary);">Новости</span>
+                <h2>Последние обновления</h2>
+                <p style="color: var(--muted-foreground); font-size: 1.125rem;">Следи за новыми функциями и релизами</p>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 1rem;">
+                <div class="card animate-fade-in">
+                    <div style="display: flex; justify-content: space-between; align-items: start; gap: 1rem;">
+                        <div>
+                            <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Обновление v2.5</h3>
+                            <p style="color: var(--muted-foreground);">Добавлены новые функции ESP и улучшена производительность</p>
+                        </div>
+                        <span class="badge" style="background: var(--muted); color: var(--foreground);">10 дек 2025</span>
+                    </div>
+                </div>
+                <div class="card animate-fade-in" style="animation-delay: 0.1s;">
+                    <div style="display: flex; justify-content: space-between; align-items: start; gap: 1rem;">
+                        <div>
+                            <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Новогодняя скидка</h3>
+                            <p style="color: var(--muted-foreground);">Скидка 30% на все пакеты до конца месяца! 🎄</p>
+                        </div>
+                        <span class="badge" style="background: var(--muted); color: var(--foreground);">5 дек 2025</span>
+                    </div>
+                </div>
+                <div class="card animate-fade-in" style="animation-delay: 0.2s;">
+                    <div style="display: flex; justify-content: space-between; align-items: start; gap: 1rem;">
+                        <div>
+                            <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Новый модуль</h3>
+                            <p style="color: var(--muted-foreground);">Выпущен модуль "Телепорт" для премиум пользователей</p>
+                        </div>
+                        <span class="badge" style="background: var(--muted); color: var(--foreground);">1 дек 2025</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="support" class="section">
+        <div class="container" style="max-width: 800px;">
+            <div class="section-header animate-fade-in">
+                <span class="badge badge-primary" style="background: var(--accent);">Поддержка</span>
+                <h2>Команда поддержки</h2>
+                <p style="color: var(--muted-foreground); font-size: 1.125rem;">Наши специалисты всегда готовы помочь в Telegram</p>
+            </div>
+            
+            <div class="support-team">
+                <div class="card support-card animate-fade-in">
+                    <div class="support-avatar">
+                        <img src="https://cdn.poehali.dev/projects/6103f50e-ced6-4439-a4e1-c6dd915768e0/files/77bcda6c-df37-49e4-9eba-a84f51e1ce67.jpg" alt="Shizu">
+                    </div>
+                    <h3>Shizu</h3>
+                    <p style="color: var(--muted-foreground); font-size: 0.875rem; margin-bottom: 0.5rem;">Старший специалист</p>
+                    <p style="color: var(--muted-foreground); font-size: 0.875rem; margin-bottom: 1rem;">@GlDrawElements</p>
+                    <button class="btn btn-primary" style="width: 100%;" onclick="window.open('https://t.me/GlDrawElements', '_blank')">
+                        ✈️ Написать
+                    </button>
+                </div>
+
+                <div class="card support-card animate-fade-in" style="animation-delay: 0.1s;">
+                    <div class="support-avatar">
+                        <img src="https://cdn.poehali.dev/projects/6103f50e-ced6-4439-a4e1-c6dd915768e0/files/d3f946e5-dead-47c9-81a3-d5b86de23888.jpg" alt="Belka">
+                    </div>
+                    <h3>Belka</h3>
+                    <p style="color: var(--muted-foreground); font-size: 0.875rem; margin-bottom: 0.5rem;">Техподдержка</p>
+                    <p style="color: var(--muted-foreground); font-size: 0.875rem; margin-bottom: 1rem;">@Kosty2323</p>
+                    <button class="btn btn-primary" style="width: 100%;" onclick="window.open('https://t.me/Kosty2323', '_blank')">
+                        ✈️ Написать
+                    </button>
+                </div>
+
+                <div class="card support-card animate-fade-in" style="animation-delay: 0.2s;">
+                    <div class="support-avatar">
+                        <img src="https://cdn.poehali.dev/projects/6103f50e-ced6-4439-a4e1-c6dd915768e0/files/207f5561-9219-4a50-8aa6-8d7cb930dced.jpg" alt="KripKripo4ek">
+                    </div>
+                    <h3>KripKripo4ek</h3>
+                    <p style="color: var(--muted-foreground); font-size: 0.875rem; margin-bottom: 0.5rem;">Техподдержка</p>
+                    <p style="color: var(--muted-foreground); font-size: 0.875rem; margin-bottom: 1rem;">@KripKripo1ek</p>
+                    <button class="btn btn-primary" style="width: 100%;" onclick="window.open('https://t.me/KripKripo1ek', '_blank')">
+                        ✈️ Написать
+                    </button>
+                </div>
+            </div>
+
+            <div class="telegram-promo animate-fade-in">
+                <h3 style="font-size: 2rem; margin-bottom: 1rem;">Мы сидим тут 💬</h3>
+                <p style="font-size: 1.125rem; margin-bottom: 1.5rem; opacity: 0.9;">
+                    Присоединяйся к нашему Telegram-каналу для новостей, обновлений и общения с комьюнити
+                </p>
+                <button class="btn btn-lg" style="background: white; color: var(--primary);" onclick="window.open('https://t.me/your_channel', '_blank')">
+                    ✈️ Перейти в Telegram
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo">
+                    <div class="logo-icon" style="background: rgba(255,255,255,0.2);">🎮</div>
+                    <div>
+                        <div style="font-size: 1.5rem; font-weight: 800;">Roblox-Cheat</div>
+                        <div style="font-size: 0.875rem; opacity: 0.8;">Стань лучшим игроком</div>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <a href="#">Пользовательское соглашение</a>
+                    <a href="#">Политика конфиденциальности</a>
+                    <a href="#">Контакты</a>
+                </div>
+                <div class="social-links">
+                    <a href="https://vk.com/video-229092943_456239125" target="_blank" class="social-btn">📹</a>
+                    <a href="https://t.me/your_channel" target="_blank" class="social-btn">✈️</a>
+                    <a href="https://t.me/your_chat" target="_blank" class="social-btn">💬</a>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.2); font-size: 0.875rem; opacity: 0.7;">
+                © 2025 Roblox-Cheat. Все права защищены.
+            </div>
+        </div>
+    </footer>
+
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('login')">×</button>
+            <div class="modal-header">
+                <h3>Вход в аккаунт</h3>
+                <p>Войди чтобы получить доступ к своим покупкам</p>
+            </div>
+            <div class="form-group">
+                <label>Никнейм</label>
+                <input type="text" placeholder="твой_ник">
+            </div>
+            <div class="form-group">
+                <label>Пароль</label>
+                <input type="password" placeholder="••••••••">
+            </div>
+            <button class="btn btn-primary" style="width: 100%;">
+                🔑 Войти
+            </button>
+            <p style="text-align: center; margin-top: 1rem; font-size: 0.875rem;">
+                Нет аккаунта? <a href="#" onclick="closeModal('login'); openModal('register'); return false;" style="color: var(--primary);">Зарегистрируйся</a>
+            </p>
+        </div>
+    </div>
+
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('register')">×</button>
+            <div class="modal-header">
+                <h3>Регистрация</h3>
+                <p>Создай аккаунт чтобы покупать и управлять подписками</p>
+            </div>
+            <div class="form-group">
+                <label>Никнейм</label>
+                <input type="text" placeholder="придумай_ник">
+            </div>
+            <div class="form-group">
+                <label>Пароль</label>
+                <input type="password" placeholder="••••••••">
+            </div>
+            <div class="form-group">
+                <label>Почта</label>
+                <input type="email" placeholder="твой@email.ru">
+            </div>
+            <button class="btn btn-primary" style="width: 100%;">
+                ➕ Зарегистрироваться
+            </button>
+            <p style="text-align: center; margin-top: 1rem; font-size: 0.875rem;">
+                Уже есть аккаунт? <a href="#" onclick="closeModal('register'); openModal('login'); return false;" style="color: var(--primary);">Войти</a>
+            </p>
+        </div>
+    </div>
+
+    <div id="demoModal" class="modal">
+        <div class="modal-content modal-content-large">
+            <button class="close-modal" onclick="closeModal('demo')">×</button>
+            <div class="modal-header">
+                <h3>Демонстрация возможностей</h3>
+                <p>Смотри как работает Roblox-Cheat на практике</p>
+            </div>
+            <div style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(14, 165, 233, 0.2), rgba(249, 115, 22, 0.2)); padding: 4rem; border-radius: var(--radius); text-align: center;">
+                <div style="font-size: 4rem; margin-bottom: 1rem;">▶️</div>
+                <h4 style="margin-bottom: 0.5rem;">Здесь будет видео демонстрация</h4>
+                <p style="color: var(--muted-foreground);">Пока видео в разработке 🎬</p>
+            </div>
+            <button class="btn btn-primary btn-lg" style="width: 100%; margin-top: 1.5rem;" onclick="closeModal('demo'); openModal('purchase');">
+                🛒 Хочу купить!
+            </button>
+        </div>
+    </div>
+
+    <div id="purchaseModal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('purchase')">×</button>
+            <div class="modal-header">
+                <h3>Оформление покупки</h3>
+                <p>Выбери период и оплати доступ к читу</p>
+            </div>
+            <div>
+                <label style="font-weight: 600; margin-bottom: 1rem; display: block;">Период подписки:</label>
+                <input type="range" id="modalPeriodSlider" min="0" max="4" value="2" step="1" class="slider" style="width: 100%;">
+                <div class="slider-labels">
+                    <span style="font-size: 0.65rem;">7д</span>
+                    <span style="font-size: 0.65rem;">14д</span>
+                    <span style="font-size: 0.65rem;">1м</span>
+                    <span style="font-size: 0.65rem;">2м</span>
+                    <span style="font-size: 0.65rem;">∞</span>
+                </div>
+
+                <div class="price-display">
+                    <div style="color: var(--muted-foreground); margin-bottom: 0.5rem; font-size: 0.875rem;" id="modalPeriodLabel">1 месяц</div>
+                    <div>
+                        <span class="price-old" id="modalOldPrice" style="display: inline-block; font-size: 1.25rem;">600₽</span>
+                        <span class="price-new" id="modalNewPrice" style="font-size: 2.5rem;">540₽</span>
+                    </div>
+                    <div style="margin-top: 0.5rem;">
+                        <span class="badge badge-primary" id="modalDiscountBadge" style="background: linear-gradient(90deg, var(--accent), #fb923c); font-size: 0.75rem;">🔥 Скидка 10%</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Ник для автоматической выдачи</label>
+                    <input type="text" placeholder="твой_ник">
+                </div>
+
+                <button class="btn btn-primary btn-lg" style="width: 100%;">
+                    💳 Оплатить <span id="modalBtnPrice">540</span>₽
+                </button>
+
+                <p style="text-align: center; font-size: 0.75rem; color: var(--muted-foreground); margin-top: 1rem;">
+                    После оплаты доступ выдается автоматически на указанный ник
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div id="guideModal" class="modal">
+        <div class="modal-content modal-content-large" style="max-height: 90vh; overflow-y: auto;">
+            <button class="close-modal" onclick="closeModal('guide')">×</button>
+            <div class="modal-header">
+                <h3 id="guideTitle"></h3>
+                <p id="guideDescription"></p>
+            </div>
+            <div id="guideVideo" class="video-container" style="margin-bottom: 2rem;"></div>
+            <div id="guideContent" style="line-height: 1.8;"></div>
+            <button class="btn btn-primary" style="width: 100%; margin-top: 1.5rem;" onclick="closeModal('guide')">
+                ✓ Понятно, спасибо!
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const periods = [
+            { days: 7, label: '7 дней', price: 150, discount: 0, oldPrice: 0 },
+            { days: 14, label: '14 дней', price: 285, discount: 5, oldPrice: 300 },
+            { days: 30, label: '1 месяц', price: 540, discount: 10, oldPrice: 600 },
+            { days: 60, label: '2 месяца', price: 1020, discount: 15, oldPrice: 1200 },
+            { days: 0, label: 'Навсегда', price: 3750, discount: 25, oldPrice: 5000 }
+        ];
+
+        const guides = [
+            {
+                title: '🎮 Первая установка',
+                description: 'Пошаговая инструкция для новичков • 5 мин',
+                videoUrl: 'https://vkvideo.ru/video_ext.php?oid=-229092943&id=456239125&hash=020f569c96e328dd',
+                content: `<h3>Шаг 1: Скачивание</h3><p>После оплаты ты получишь файл читера. Сохрани его в удобное место на компьютере.</p><h3>Шаг 2: Отключение антивируса</h3><p>Обязательно отключи Windows Defender и другие антивирусы на время установки. Это нужно, так как читы часто определяются как вредоносное ПО.</p><h3>Шаг 3: Запуск Roblox</h3><p>Запусти Roblox и войди в любую игру, где хочешь использовать чит.</p><h3>Шаг 4: Инъекция</h3><p>Запусти файл читера от имени администратора. Программа автоматически найдет Roblox и внедрится в процесс.</p><h3>Шаг 5: Меню</h3><p>Нажми клавишу INSERT для открытия меню читера. Теперь ты можешь включать нужные функции!</p><p style="color: var(--primary); font-weight: 600;">✅ Готово! Ты великолепен!</p>`
+            },
+            {
+                title: '⚙️ Настройка ESP',
+                description: 'Как настроить отображение игроков • 3 мин',
+                videoUrl: 'https://vkvideo.ru/video_ext.php?oid=-229092943&id=456239126&hash=020f569c96e328dd',
+                content: `<h3>Что такое ESP?</h3><p>ESP (Extra Sensory Perception) - это функция, которая показывает игроков через стены.</p><h3>Основные настройки:</h3><h3>Box ESP - рамки вокруг игроков</h3><ul style="list-style: none; padding-left: 0;"><li style="margin: 0.5rem 0;">• Включи Box ESP в меню</li><li style="margin: 0.5rem 0;">• Выбери цвет рамки (рекомендуем красный для врагов)</li><li style="margin: 0.5rem 0;">• Настрой толщину линий</li></ul><h3>Distance - дистанция до игроков</h3><ul style="list-style: none; padding-left: 0;"><li style="margin: 0.5rem 0;">• Показывает расстояние в метрах</li><li style="margin: 0.5rem 0;">• Помогает оценить угрозу</li></ul><h3>Health Bar - полоска здоровья</h3><ul style="list-style: none; padding-left: 0;"><li style="margin: 0.5rem 0;">• Зеленый = полное здоровье</li><li style="margin: 0.5rem 0;">• Желтый = среднее</li><li style="margin: 0.5rem 0;">• Красный = низкое</li></ul><p style="color: var(--primary); font-weight: 600;">💡 Совет: не включай все сразу, экран будет перегружен!</p>`
+            },
+            {
+                title: '🎯 Настройка аимбота',
+                description: 'Оптимальные параметры прицеливания • 4 мин',
+                videoUrl: 'https://vkvideo.ru/video_ext.php?oid=-229092943&id=456239127&hash=020f569c96e328dd',
+                content: `<h3>AimBot - автоматическое прицеливание</h3><h3>Основные параметры:</h3><h3>FOV (Field of View) - зона захвата цели</h3><ul style="list-style: none; padding-left: 0;"><li style="margin: 0.5rem 0;">• Рекомендуемое значение: 100-150</li><li style="margin: 0.5rem 0;">• Больше = легче захват, но менее естественно</li><li style="margin: 0.5rem 0;">• Меньше = сложнее, но безопаснее</li></ul><h3>Smooth - плавность наведения</h3><ul style="list-style: none; padding-left: 0;"><li style="margin: 0.5rem 0;">• Значение 1 = мгновенное (палево!)</li><li style="margin: 0.5rem 0;">• Значение 5-10 = оптимально</li><li style="margin: 0.5rem 0;">• Значение 20+ = очень плавно и естественно</li></ul><h3>Lock Part - часть тела для прицеливания</h3><ul style="list-style: none; padding-left: 0;"><li style="margin: 0.5rem 0;">• Head = голова (максимальный урон)</li><li style="margin: 0.5rem 0;">• Torso = торс (проще попасть)</li><li style="margin: 0.5rem 0;">• Random = случайная часть</li></ul><p style="color: var(--accent); font-weight: 600;">⚠️ Важно: начни с высокого Smooth и большого FOV, постепенно уменьшай для большей точности</p>`
+            },
+            {
+                title: '🛡️ Защита от бана',
+                description: 'Как играть безопасно • 6 мин',
+                videoUrl: 'https://vkvideo.ru/video_ext.php?oid=-229092943&id=456239128&hash=020f569c96e328dd',
+                content: `<h3>Правила безопасной игры</h3><h3>1. Не будь слишком очевидным</h3><ul style="list-style: none; padding-left: 0;"><li style="margin: 0.5rem 0;">• Не включай все функции сразу</li><li style="margin: 0.5rem 0;">• Иногда промахивайся специально</li><li style="margin: 0.5rem 0;">• Не телепортируйся на глазах у всех</li></ul><h3>2. Используй StreamProof режим</h3><ul style="list-style: none; padding-left: 0;"><li style="margin: 0.5rem 0;">• Скрывает читы на записи/стриме</li><li style="margin: 0.5rem 0;">• Никто не увидит твои ESP и меню</li><li style="margin: 0.5rem 0;">• Обязателен если записываешь видео</li></ul><h3>3. Настройки аимбота</h3><ul style="list-style: none; padding-left: 0;"><li style="margin: 0.5rem 0;">• Smooth не меньше 5</li><li style="margin: 0.5rem 0;">• FOV не больше 200</li><li style="margin: 0.5rem 0;">• Не целься только в голову</li></ul><h3>4. Не используй читы в:</h3><ul style="list-style: none; padding-left: 0;"><li style="margin: 0.5rem 0;">• Ranked играх (высокий риск)</li><li style="margin: 0.5rem 0;">• Популярных серверах с модераторами</li><li style="margin: 0.5rem 0;">• Играх с античитом (проверяй совместимость)</li></ul><p style="color: var(--primary); font-weight: 600;">✅ Следуя этим правилам, ты минимизируешь риск бана!</p>`
+            }
+        ];
+
+        function updatePrice(value) {
+            const period = periods[value];
+            document.getElementById('periodLabel').textContent = period.label;
+            document.getElementById('newPrice').textContent = period.price + '₽';
+            document.getElementById('btnPrice').textContent = period.price;
+            
+            const oldPriceEl = document.getElementById('oldPrice');
+            const discountBadge = document.getElementById('discountBadge');
+            
+            if (period.oldPrice > 0) {
+                oldPriceEl.textContent = period.oldPrice + '₽';
+                oldPriceEl.style.display = 'inline-block';
+                discountBadge.textContent = '🔥 Скидка ' + period.discount + '%';
+                discountBadge.style.display = 'inline-block';
+            } else {
+                oldPriceEl.style.display = 'none';
+                discountBadge.style.display = 'none';
+            }
+        }
+
+        function updateModalPrice(value) {
+            const period = periods[value];
+            document.getElementById('modalPeriodLabel').textContent = period.label;
+            document.getElementById('modalNewPrice').textContent = period.price + '₽';
+            document.getElementById('modalBtnPrice').textContent = period.price;
+            
+            const oldPriceEl = document.getElementById('modalOldPrice');
+            const discountBadge = document.getElementById('modalDiscountBadge');
+            
+            if (period.oldPrice > 0) {
+                oldPriceEl.textContent = period.oldPrice + '₽';
+                oldPriceEl.style.display = 'inline-block';
+                discountBadge.textContent = '🔥 Скидка ' + period.discount + '%';
+                discountBadge.style.display = 'inline-block';
+            } else {
+                oldPriceEl.style.display = 'none';
+                discountBadge.style.display = 'none';
+            }
+        }
+
+        document.getElementById('periodSlider').addEventListener('input', function(e) {
+            updatePrice(e.target.value);
+        });
+
+        document.getElementById('modalPeriodSlider').addEventListener('input', function(e) {
+            updateModalPrice(e.target.value);
+        });
+
+        function openModal(name) {
+            document.getElementById(name + 'Modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(name) {
+            document.getElementById(name + 'Modal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
+        }
+
+        function toggleAccordion(element) {
+            const wasActive = element.classList.contains('active');
+            document.querySelectorAll('.accordion-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            if (!wasActive) {
+                element.classList.add('active');
+            }
+        }
+
+        function openGuide(index) {
+            const guide = guides[index];
+            document.getElementById('guideTitle').textContent = guide.title;
+            document.getElementById('guideDescription').textContent = guide.description;
+            document.getElementById('guideVideo').innerHTML = '<iframe src="' + guide.videoUrl + '" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"></iframe>';
+            document.getElementById('guideContent').innerHTML = guide.content;
+            openModal('guide');
+        }
+
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('modal')) {
+                const modalId = e.target.id.replace('Modal', '');
+                closeModal(modalId);
+            }
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        updatePrice(2);
+        updateModalPrice(2);
+    </script>
+</body>
+</html>
